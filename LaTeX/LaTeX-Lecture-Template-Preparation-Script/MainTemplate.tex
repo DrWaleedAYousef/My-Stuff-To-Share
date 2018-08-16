@@ -1,0 +1,191 @@
+\documentclass[11pt, b6paper, landscape, oneside]{memoir}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{color, xcolor, colortbl}
+\usepackage{graphicx}
+\usepackage{natbib, bibentry}
+\usepackage{subfig, picinpar}
+\usepackage{titling}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsfonts, amssymb, bm}
+\usepackage{verbatim}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{pagecolor}
+\usepackage{array}
+\usepackage{paralist}
+\usepackage{geometry}
+\usepackage{dashrule}
+\usepackage{tikz-timing}[2009/12/09]
+\usepackage{pgf}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+
+\definecolor{bgblue}{rgb}{0.41961,0.90784,0.90784}%
+\definecolor{bgred}{rgb}{1,0.61569,0.61569}%
+\definecolor{fgblue}{rgb}{0,0,0.6}%
+\definecolor{fgred}{rgb}{0.6,0,0}%
+
+\hypersetup{
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+}
+
+\geometry{left=.1in, right=.1in, top=.1in, bottom=.15in}
+\setlength{\footskip}{.1in}
+
+\newcommand\HR{\rule{.5em}{.4pt}}
+
+\usepackage{fourier}
+\DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
+
+\usepackage{listings}
+\lstloadlanguages{Matlab, Verilog, C}
+\lstset{language=Verilog, xleftmargin=0pt, numberstyle=\tiny, numbersep=0pt, breaklines=true, breakindent=20pt, basicstyle=\small, showstringspaces=false, commentstyle=\color{blue}\tiny, frame=single, frameround=tttt}
+\renewcommand{\lstlistingname}{
+  \textbf{\underline{Matlab Code}}}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=single,
+  frameround=tttt,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\setcounter{MaxMatrixCols}{30}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\hspace*{\fill} \rule{0.5em}{0.5em}}
+
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\newcommand{\TimingExample}[1]{%
+  \vspace{.1in}
+
+  #1 \hfill \hdashrule[0ex]{.96\textwidth}{.1pt}{5pt}
+}%
+
+\newcommand{\KMapGrid}[3]{
+  \renewcommand{\arraystretch}{#1}
+  \begin{tabular}{|p{#2in}|p{#2in}|p{#2in}|p{#2in}|}
+    \hline
+    & & & \\ \hline
+    & & & \\ \hline
+    \ifnum #3=4
+    & & & \\ \hline
+    & & & \\ \hline
+    \fi
+  \end{tabular}
+}
+
+\newenvironment{KMap}[2]
+{ \renewcommand{\arraystretch}{#1}
+  \begin{tabular}{|>{\centering\arraybackslash}p{#2in}|>{\centering\arraybackslash}p{#2in}|>{\centering\arraybackslash}p{#2in}|>{\centering\arraybackslash}p{#2in}|}
+    \hline
+    }
+    {
+  \end{tabular}
+}
+
+\newcounter{PageDummyCounter}
+
+\graphicspath{{./Ch01/}{./Ch02/}{./Ch03/}{./Ch04/}{./Ch05/}{./Ch06/}{./Ch07/}{./Ch08/}{./Ch09/}{./Ch10/}{./Ch11/}{./Ch12/}{./Ch13/}{./Ch14/}{./Ch15/}{./Ch16/}{./Ch17/}{./Ch18/}{./Ch19/}{./Ch20/}}
+
+\nobibliography{publications,booksIhave}
+
+\begin{document}
+
+\frontmatter
+
+\input{FrontMatter/FrontMatter.tex}
+
+\mainmatter
+
+\setcounter{secnumdepth}{3}
+
+\input{Ch01/Ch01.tex}
+
+\input{Ch02/Ch02.tex}
+
+\input{Ch03/Ch03.tex}
+
+\input{Ch04/Ch04.tex}
+
+\input{Ch05/Ch05.tex}
+
+\input{Ch06/Ch06.tex}
+
+\input{Ch07/Ch07.tex}
+
+\input{Ch08/Ch08.tex}
+
+\input{Ch09/Ch09.tex}
+
+\input{Ch10/Ch10.tex}
+
+\input{Ch11/Ch11.tex}
+
+\input{Ch12/Ch12.tex}
+
+\appendix
+\renewcommand{\thepage}{\thechapter-\arabic{page}}
+
+\clearpage
+\setcounter{page}{1}
+
+\input{Ch13/Ch13.tex}
+
+\input{Ch14/Ch14.tex}
+
+\input{Ch15/Ch15.tex}
+
+\backmatter
+
+\renewcommand{\thepage}{}
+
+\bibliographystyle{elsarticle-harv-NoNote}
+\bibliography{publications,booksIhave}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Mano and Ciletti(2007)}]{Mano2007DigDes}
+Mano, M.~M., Ciletti, M.~D., 2007. {Digital design}, 4th Edition.
+  Prentice-Hall, Upper Saddle River, NJ.
+
+\end{thebibliography}
