@@ -28,10 +28,16 @@ deleting, etc. completely from the command line without signing into the web int
 This is a set of LaTeX templates, scripts, and modules that I usually use to prepare my lecture
 notes and other documents. They can be very helpful for anyone composing similar documents.
 
-## LaTeX-Lecture-Template ##
-Contains the LaTeX template that I always use in preparing the lecture notes. If you compile the
-`.tex` file, you will get exactly the same `pdf` part (chapter 1 as a sample) of the Digital Design
-course.
+## BibTeX ##
+Is a simple folder that accounts for an example for all students how to organize your library using
+the "power of test" to git rid of other software. The folder contains a `bib` file, along with
+`pdf`s. The `bib` file is your library that contains articles, books, etc. Each item has a key that
+should be informative, e.g., `Yousef2017MethodSystemForComputer`; and in case it has a `pdf`, it
+should be named `Yousef2017MethodSystemForComputer.pdf`. In addition, each item has a set of
+keywords that should help you in classifying your items. Keywords should be as clear as
+possible. When adding a keyword to a new item, it should be selected from the existing keywords (or
+add a new one). This is to avoid having two keywords with different spelling styles (e.g.,
+Microcalcification and micro-calcification).
 
 ## LaTeX-Lecture-Template-Preparation-Script ##
 This script is very beneficial for producing a lengthy document like the lecture notes. This script
@@ -45,6 +51,11 @@ all the stuff for you. Of course, you can change the `FrontMatterTemplate.tex` a
 `MainTemplate.tex` as you like. After generating the `LaTeX` code under that folder, you can compile
 it to generate the `pdf` which contains all the chapter titles, section titles, and all the
 graphics.
+
+## LaTeX-Lecture-Template ##
+Contains the LaTeX template that I always use in preparing the lecture notes. If you compile the
+`.tex` file, you will get exactly the same `pdf` part (chapter 1 as a sample) of the Digital Design
+course.
 
 
 # Miscellaneous-Scripts #
