@@ -30,7 +30,7 @@ notes and other documents. They can be very helpful for anyone composing similar
 
 ## BibTeX ##
 Is a simple folder that accounts for an example for all students how to organize your library using
-the "power of test" to git rid of other software. The folder contains a `bib` file, along with
+the "power of text" to git rid of other software. The folder contains a `bib` file, along with
 `pdf`s. The `bib` file is your library that contains articles, books, etc. Each item has a key that
 should be informative, e.g., `Yousef2017MethodSystemForComputer`; and in case it has a `pdf`, it
 should be named `Yousef2017MethodSystemForComputer.pdf`. In addition, each item has a set of
@@ -70,6 +70,10 @@ give general advises to the technical writing in general and `LaTeX` in particul
     more organization.
   * Be consistent in lower/upper case and naming conventions in everything including: names of
     files, labels of equations, figure, tables, etc.,
+  * For bilingual document (in particular Arabic-English), make sure to use `XeTeX`. The document
+	will almost compile without any problem as if you are using `PDFLaTeX`. If you
+	are using Emacs, just make sure to include `(setq TeX-engine (quote xetex))` in your `.emacs`
+	file.
 
 
 # Miscellaneous-Scripts #
