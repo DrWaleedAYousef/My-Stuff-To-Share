@@ -39,6 +39,11 @@ possible. When adding a keyword to a new item, it should be selected from the ex
 add a new one). This is to avoid having two keywords with different spelling styles (e.g.,
 Microcalcification and micro-calcification).
 
+## LaTeX-Lecture-Template ##
+Contains the LaTeX template that I always use in preparing the lecture notes. If you compile the
+`.tex` file, you will get exactly the same `pdf` part (chapter 1 as a sample) of the Digital Design
+course.
+
 ## LaTeX-Lecture-Template-Preparation-Script ##
 This script is very beneficial for producing a lengthy document like the lecture notes. This script
 is to save the nonsense time and effort wasted in writing `\chapter{} \section{} \includegraphics
@@ -52,10 +57,19 @@ all the stuff for you. Of course, you can change the `FrontMatterTemplate.tex` a
 it to generate the `pdf` which contains all the chapter titles, section titles, and all the
 graphics.
 
-## LaTeX-Lecture-Template ##
-Contains the LaTeX template that I always use in preparing the lecture notes. If you compile the
-`.tex` file, you will get exactly the same `pdf` part (chapter 1 as a sample) of the Digital Design
-course.
+## LaTeX-Manuscript-Template ##
+This section is still under preparation, so it will be sort of improvising. It is an example for a
+manuscript uses many `LaTeX` modules, e.g., `Tikz`, `pgfplot`, etc. I will leverage this section to
+give general advises to the technical writing in general and `LaTeX` in particular.
+
+  * Have your `LaTeX` files modular as if you write a code (`LaTeX` is exactly a code). For example,
+    have each Section in a separate `tex` file to be `\input` in the main file, and so on...
+  * Isolate your preamble in, e.g., `Preamble.tex` and try to make it generic for other documents.
+  * Have a separate sub-folder, e.g., called `Graphics`, to include all images. and If you have many
+    figures coded in `Tikz` or `pgfplots` it is a good idea to have them under a separate folder for
+    more organization.
+  * Be consistent in lower/upper case and naming conventions in everything including: names of
+    files, labels of equations, figure, tables, etc.,
 
 
 # Miscellaneous-Scripts #
