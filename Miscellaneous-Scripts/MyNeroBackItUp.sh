@@ -20,13 +20,15 @@
 
 SRC="/home/wyousef"
 DST="/mnt/MyPassportLinux/MyNeroBackItUp"
-OPT="-avh --delete --exclude-from=MyExcludeFile.txt" #options for full backup and part of the
+SCRIPTDIR=$(dirname $0)
+OPT="-avh --delete --exclude-from=$SCRIPTDIR/MyExcludeFile.txt" #options for full backup and part of the
 						     #options for inc backup.
+echo $OPT
 
 #The --exclude-from option: directories should be wyousef/DIR if it is /DIR then any directory of
 #that name at any level will be execluded not only at the root of the transfer directory.
 
-if ! [ -d "$DST" ]; then 
+if ! [ -d "$DST" ]; then
     mkdir "$DST"
     echo "I created the directory "$DST" and will use it or this and future backups"
 fi
@@ -56,3 +58,4 @@ fi
 
 #Warning: when I tried to concatenate the original option (OPT) with the new Incremental option
 #(--link-dest=.....), something wrong happened!! rsync kept backing up from strange sources!!
+

@@ -1,5 +1,6 @@
 - wyousef/Downloads
 - wyousef/Desktop
 - wyousef/vmware
+- wyousef/tmp
 
 
