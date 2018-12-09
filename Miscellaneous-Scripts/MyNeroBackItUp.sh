@@ -18,9 +18,19 @@
 #backup, ...etc.
 ###############################################
 
+
+### follow the symlinks that point to original files and backup these files to local HD first.
+cd /home/wyousef/MyDocuments/MyScripts/InstallationTipsArch
+for f in $(find -type l); do
+    cp -H $f CP-H-Symlink/
+done
+cd ~
+########
+### Then, backup entire HD to external
+
+SCRIPTDIR=$(dirname $0)
 SRC="/home/wyousef"
 DST="/mnt/MyPassportLinux/MyNeroBackItUp"
-SCRIPTDIR=$(dirname $0)
 OPT="-avh --delete --exclude-from=$SCRIPTDIR/MyExcludeFile.txt" #options for full backup and part of the
 						     #options for inc backup.
 echo $OPT

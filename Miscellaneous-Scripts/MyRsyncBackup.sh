@@ -10,6 +10,15 @@
 #Regular incremental rsync backup, which does not keep history; only the latest backup is kept.
 ######################################################
 
+### follow the symlinks that point to original files and backup these files to local HD first.
+cd /home/wyousef/MyDocuments/MyScripts/InstallationTipsArch
+for f in $(find -type l); do
+    cp -H $f CP-H-Symlink/
+done
+cd ~
+########
+### Then, backup entire HD to external
+
 SRC="/home/wyousef"
 DST="/mnt/MyPassportLinux/MyRsyncBackup"
 
