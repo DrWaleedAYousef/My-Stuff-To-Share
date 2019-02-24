@@ -1,0 +1,92 @@
+Introduction
+Mathematical optimization
+Least-squares and linear programming
+Convex optimization
+Nonlinear optimization
+Outline
+Notation
+
+Convex sets
+Affine and convex sets
+Some important examples
+Operations that preserve convexity
+Generalized inequalities
+Separating and supporting hyperplanes
+Dual cones and generalized inequalities
+
+Convex functions
+Basic properties and examples
+Operations that preserve convexity
+The conjugate function
+Quasiconvex functions
+Log-concave and log-convex functions
+Convexity with respect to generalized inequalities
+
+Convex optimization problems
+Optimization problems
+Convex optimization
+Linear optimization problems
+Quadratic optimization problems
+Geometric programming
+Generalized inequality constraints
+Vector optimization
+
+Duality
+The Lagrange dual function
+The Lagrange dual problem
+Geometric interpretation
+Saddle-point interpretation
+Optimality conditions
+Perturbation and sensitivity analysis
+Examples
+Theorems of alternatives
+Generalized inequalities
+
+Approximation and fitting
+Norm approximation
+Least-norm problems
+Regularized approximation
+Robust approximation
+Function fitting and interpolation
+
+Statistical estimation
+Parametric distribution estimation
+Nonparametric distribution estimation
+Optimal detector design and hypothesis testing
+Chebyshev and Chernoff bounds
+Experiment design
+
+Geometric problems
+Projection on a set
+Distance between sets
+Euclidean distance and angle problems
+Extremal volume ellipsoids
+Centering
+Classification
+Placement and location
+Floor planning
+
+Unconstrained minimization
+Unconstrained minimization
+Descent methods
+Gradient descent method
+Steepest descent method
+Newton’s method
+Self-concordance
+Implementation
+
+Equality constrained minimization
+Equality constrained minimization problems
+Newton’s method with equality constraints
+Infeasible start Newton method
+Implementation
+
+Interior-point methods
+Inequality constrained minimization problems
+Logarithmic barrier function and central path
+The barrier method
+Feasibility and phase I methods
+Complexity analysis via self-concordance
+Problems with generalized inequalities
+Primal-dual interior-point methods
+Implementation

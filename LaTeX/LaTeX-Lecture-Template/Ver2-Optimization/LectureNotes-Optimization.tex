@@ -1,0 +1,65 @@
+\input{preample.tex}
+
+\includeonly{
+  FrontMatter/FrontMatter,
+  Ch01/Ch01,
+  Ch02/Ch02,
+  Ch03/Ch03,
+  Ch04/Ch04,
+  Ch05/Ch05,
+  Ch06/Ch06,
+  Ch07/Ch07,
+  Ch08/Ch08,
+  Ch09/Ch09,
+  Ch10/Ch10,
+  Ch11/Ch11
+}
+
+
+\begin{document}
+
+\frontmatter
+
+\include{FrontMatter/FrontMatter}
+
+\mainmatter
+\setcounter{secnumdepth}{3}
+
+\include{Ch01/Ch01}
+\include{Ch02/Ch02}
+\include{Ch03/Ch03}
+\include{Ch04/Ch04}
+\include{Ch05/Ch05}
+\include{Ch06/Ch06}
+\include{Ch07/Ch07}
+\include{Ch08/Ch08}
+\include{Ch09/Ch09}
+\include{Ch10/Ch10}
+\include{Ch11/Ch11}
+
+\appendix
+\renewcommand{\thepage}{\thechapter-\arabic{page}}
+
+\clearpage
+\setcounter{page}{1}
+
+% \include{Ch13/Ch13}
+% \include{Ch14/Ch14}
+% \include{Ch15/Ch15}
+
+\backmatter
+
+\renewcommand{\thepage}{}
+
+{\tiny
+  \bibliographystyle{asa}
+  \bibliography{publications,booksIhave}
+}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
