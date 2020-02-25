@@ -62,6 +62,11 @@ This section is still under preparation, so it will be sort of improvising. It i
 manuscript uses many `LaTeX` modules, e.g., `Tikz`, `pgfplot`, etc. I will leverage this section to
 give general advises to the technical writing in general and `LaTeX` in particular.
 
+The folder contains a complete opensource LaTeX code of our
+(paper)[https://arxiv.org/abs/1905.05700] that is currently under review. The code contains many
+very beneficial aspects, including writing bilingually (English and Arabic), preparing all the
+figures in pgfplot and tikz, using organized bibtex, etc.
+
   * Have your `LaTeX` files modular as if you write a code (`LaTeX` is exactly a code). For example,
     have each Section in a separate `tex` file to be `\input` in the main file, and so on...
   * Isolate your preamble in, e.g., `Preamble.tex` and try to make it generic for other documents.
