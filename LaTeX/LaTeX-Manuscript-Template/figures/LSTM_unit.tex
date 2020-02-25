@@ -1,0 +1,174 @@
+\begin{tikzpicture}
+
+  % The grid
+  % \draw[step=0.5, gray!40, very thin] (0,0) grid (8,4);
+
+  % LSTM frame
+  \def \yONE {0.5}
+  \def \yTWO {3.3}
+  \draw[rounded corners=10pt, very thick]  (1.5, 0.5) rectangle (6.2, 3.3);
+
+  \def \sigmoidWidth  {0.45}
+  \def \sigmoidInDist {0.2}
+  \def \sigmoidHeight  {0.3}
+  \def \yB  {1.3}
+  \def \yD  {2.75}
+  \def \shift {0.3}
+  % First Sigmoid
+  \draw  (2, \yB) rectangle (2+ \sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {$\sigma$};
+
+  \def \r {.15cm}
+  % The Upper times operator
+  \draw[thick] (2.25, \yD) circle (\r) node {$\times$};
+
+  % Second Sigmoid
+  \def \xS {2.45 +\sigmoidInDist}
+  \draw  (\xS, \yB) rectangle (\xS +\sigmoidWidth, \yB + \sigmoidHeight) node[pos=0.5] {$\sigma$};
+
+  % Square tanh
+  \def \xSS {\xS +\sigmoidWidth + \sigmoidInDist}
+  \draw  (\xSS, \yB) 
+  rectangle 
+  (\xSS +\sigmoidWidth +0.13, \yB +\sigmoidHeight)
+  node[pos=0.5] {\scriptsize \textit{tanh}};
+
+  % Third Sigoid
+  \def \xSSS {\xSS +\sigmoidWidth +0.13 +\sigmoidInDist}
+  \draw  (\xSSS, \yB) rectangle (\xSSS +\sigmoidWidth, \yB +\sigmoidHeight)
+  node[pos=0.5] { $\sigma$};
+
+  % Second times operator and add operator
+  \def \xTimesB {3.6}
+  \def \yC      {2}
+
+  \draw[thick] (\xTimesB, \yC) circle (\r) node {$\times$};
+  \draw[thick] (\xTimesB, \yD) circle (\r) node {$+$};
+
+  % Third times operator and its tanh
+  \draw[thick] (\xTimesB +1.3 +\shift, \yC) circle (\r) node {$\times$};
+  \draw (\xTimesB +1.3 +\shift, \yC +.4)  
+  ellipse (.35cm and .14cm) 
+  node {\scriptsize \textit{tanh}};
+
+
+  % LINES
+  \draw[arrows=-latex, line width=1.5pt]  (0.85, \yD) -- (1.5, \yD) 
+  node[left, xshift=-.6cm, yshift=0.1cm] {$C_{t-1}$};
+  \draw[line width=1.5pt]  (1.5, \yD) -- (2.1, \yD);
+  \draw[line width=1.5pt]  (2.4, \yD) -- (3.46, \yD);
+  \draw[arrows=-latex, line width=1.5pt]  (3.75, \yD) -- (6.75 +0.2, \yD)
+  node[right, xshift=0.0cm, yshift=0.05cm] {$C_t$};
+
+  \draw[arrows=-latex, line width=1.5pt]  (2.25, \yB +\sigmoidHeight) -- (2.25, 2.6)
+  node[left, yshift=-0.5cm] {$f_t$};
+
+  % Level B LINES
+  \def \levelB {1}
+  \draw[arrows=-latex, line width=1.5pt] (0.85, \levelB) -- (1.5, \levelB)
+  node[left, xshift=-.6cm, yshift=0.1cm] {$h_{t-1}$};
+
+  \draw[line width=1.5pt] (1.5, \levelB) 
+  --
+  (4.2, \levelB);
+
+  \def \xOfThirdSigmoid {\xSSS + \sigmoidWidth/2}
+  \draw[line width=1.5pt] (4.2, \levelB) to[out=0,in=270] (\xOfThirdSigmoid, \yB);
+
+  % Third Sigmoid up line
+  % END (\xTimesB +1.3 - 0.19 , \yC)
+  \draw[line width=1.5pt] (\xOfThirdSigmoid, \yB + \sigmoidHeight) 
+  --
+  (\xOfThirdSigmoid, \yB + \sigmoidHeight + 0.17) ;
+
+  \draw[arrows=-latex, line width=1.5pt] (\xOfThirdSigmoid, \yB + \sigmoidHeight+0.17) 
+  to[out=90, in=180] 
+  (\xTimesB +1.3 -0.14 +\shift , \yC) 
+  node [left, yshift=0.2cm, xshift=-0.2cm] {$o_t$};
+
+  % tanh line
+  \draw [line width=1.5pt] (\xTimesB, \levelB)
+  --
+  (\xTimesB, \yB);
+
+  \draw [line width=1.5pt] (\xTimesB, \yB + \sigmoidHeight)
+  --
+  (\xTimesB, \yB + \sigmoidHeight +0.24);
+
+  \draw [arrows=-latex, line width=1.5pt] (\xTimesB, 2.15)
+  --
+  (\xTimesB, 2.6);
+
+  \draw[line width=1.5pt] (2.25, \levelB)
+  --
+  (2.25, \yB);
+  
+  \draw[line width=1.5pt] (\xS +\sigmoidWidth/2, \levelB)
+  --
+  (\xS +\sigmoidWidth/2, \yB);
+
+  \draw[line width=1.5pt] (\xS +\sigmoidWidth/2, \yB +\sigmoidHeight)
+  -- 
+  (\xS +\sigmoidWidth/2, \yB +\sigmoidHeight + 0.17);
+
+  \draw[arrows=-latex, line width=1.5pt] (\xS +\sigmoidWidth/2, \yB + \sigmoidHeight+0.17) 
+  to[out=90, in=180] 
+  (\xTimesB-0.14, \yC)
+  node [left, yshift=0.2cm, xshift=-0.2cm] {$i_t$};
+
+  \def \bigR {0.25cm}
+  \def \C    {1}
+  \def \xBigCicleONE {2}
+  \def \xBigCicleTWO {5.5 + 0.25}
+  \draw[thick] (\xBigCicleONE, \yONE - \C) circle (\bigR) node {$x_t$};
+  \draw[thick] (\xBigCicleTWO, \yTWO + \C) circle (\bigR) node {$h_t$};
+
+  % LINE Circle ONE
+  \draw[line width=1.5pt] (\xBigCicleONE, \yONE -\C +0.25) 
+  --
+  (\xBigCicleONE, \yONE -\C +0.25 + 1.1);
+
+  \draw[line width=1.5pt] (\xBigCicleONE, \yONE -\C +0.25 + 1.1)
+  to[out=90, in=180]
+  (2.25, 1);
+
+  % LINE third \times
+  \draw[line width=1.5pt] (\xTimesB +1.3 +\shift, 1.1)
+  --
+  (\xTimesB +1.3 +\shift, \yC - 0.15);
+
+  \draw[arrows=-latex, line width=1.5pt] (5.5, 1) 
+  --
+  (6.75 +0.2, 1)
+  node[right, xshift=0.0cm, yshift=0.05cm] {$h_t$};
+
+
+  \draw[line width=1.5pt] (\xTimesB +1.3 +\shift, 1.1)
+  to[out=270, in=180]
+  (5.5, 1);
+
+
+  \draw[line width=1.5pt] (\xTimesB +1.3 +\shift, 2.14)
+  --
+  (\xTimesB +1.3 +\shift, 2.26);
+
+
+  \draw[line width=1.5pt] (\xTimesB +1.3 +\shift, \yD)
+  --
+  (\xTimesB +1.3 +\shift, 2.54);
+
+
+  \draw[line width=1.5pt] (\xBigCicleTWO, \levelB +0.2)
+  --
+  (\xBigCicleTWO, 2.6);
+
+  \draw[line width=1.5pt] (\xBigCicleTWO - 0.2, \levelB)
+  to[out=0, in=270]
+  (\xBigCicleTWO, \levelB +0.2);
+
+
+  \draw[arrows=-latex, line width=1.5pt]
+  (\xBigCicleTWO, \yD +0.15)
+  --
+  (\xBigCicleTWO, 4);
+
+\end{tikzpicture}

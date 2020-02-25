@@ -1,0 +1,69 @@
+\begin{axis}[
+  symbolic x coords={Taweel,
+    Kamel,
+    Baseet,
+    Khafeef,
+    Wafeer,
+    Rigz,
+    Raml,
+    Motakarib,
+    Sar'e,
+    Monsareh,
+    Mogtath,
+    Madeed,
+    Hazg,
+    Motadarik,
+    Moktadib,
+    Modar'e
+  },
+  xtick=data,
+  every axis y label/.style= {at={( 0.15, 1.07)}, anchor=north},
+  ylabel style={font=\footnotesize},
+  xticklabel style = {font=\footnotesize},
+  ylabel={Verses},
+  height=8cm,
+  x=0.4cm,
+  x tick label style={rotate=90, anchor=east},
+  enlarge y limits=0.07,
+  name=left plot,%
+  title=(a) \textit{Arabic Dataset},%
+  title style={at={(0.5,-.4)}}%
+  ]
+  \addplot[ybar,color=black,mark=*, only marks,
+  point meta=explicit symbolic] coordinates {
+    (Taweel, 416428)
+    (Kamel,  370116)
+    (Baseet, 244583)
+    (Khafeef,     157880)
+    (Wafeer,     143148)
+    (Rigz,     119286)
+    (Raml,     79560)
+    (Motakarib,     63613)
+    (Sar'e,     59370)
+    (Monsareh,     28768)
+    (Mogtath,     18062)
+    (Madeed,     7808)
+    (Hazg,     7468)
+    (Motadarik,     5144)
+    (Moktadib,     799 )
+    (Modar'e,     288 )
+  };
+
+  \draw[loosely dotted] (axis cs:Taweel, 0) -- (axis cs:Taweel, 416428);
+  \draw[loosely dotted] (axis cs:Kamel,  0) -- (axis cs:Kamel,  370116);
+  \draw[loosely dotted] (axis cs:Baseet, 0) -- (axis cs:Baseet, 244583);
+  \draw[loosely dotted] (axis cs:Khafeef,0) -- (axis cs:Khafeef,157880);
+  \draw[loosely dotted] (axis cs:Wafeer, 0) -- (axis cs:Wafeer, 143148);
+  \draw[loosely dotted] (axis cs:Rigz,   0) -- (axis cs:Rigz,   119286);
+  \draw[loosely dotted] (axis cs:Raml,   0) -- (axis cs:Raml,   79560);
+  \draw[loosely dotted] (axis cs:Motakarib, 0) -- (axis cs:Motakarib, 63613);
+  \draw[loosely dotted] (axis cs:Sar'e, 0)   -- (axis cs:Sar'e, 59370);
+  \draw[loosely dotted] (axis cs:Monsareh, 0) -- (axis cs:Monsareh,28768);
+  \draw[loosely dotted] (axis cs:Mogtath, 0) -- (axis cs:Mogtath, 18062);
+  \draw[loosely dotted] (axis cs:Madeed,  0) -- (axis cs:Madeed,  7808);
+  \draw[loosely dotted] (axis cs:Hazg,    0) -- (axis cs:Hazg,    7468);
+  \draw[loosely dotted] (axis cs:Motadarik,0) -- (axis cs:Motadarik, 5144);
+  \draw[loosely dotted] (axis cs:Moktadib, 0) -- (axis cs:Moktadib,  799 );
+  \draw[loosely dotted] (axis cs:Modar'e,  0) -- (axis cs:Modar'e,   288 );
+
+\end{axis}

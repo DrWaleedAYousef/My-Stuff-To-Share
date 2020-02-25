@@ -1,0 +1,66 @@
+\section{Discussion}\label{sec:discussion}
+In this section, we will elaborate on the interpretation of some results, reflect on some concepts,
+and connect to the current and future research.
+
+Sec.~\ref{sec:data-encoding} explained the three different encoding methods leveraged in this
+research and cited some literature on the effect of encoding on network accuracy. Mathematically
+speaking, encoding is seen as feature transformation $\mathcal{T}$, where a character $X$ is
+transformed to $\mathcal{T}(X)$ in the new encoding space. Since the lossless encoding is
+invertible, it is clear for any two functions (networks) and any two encodings (transformations)
+that
+$\eta_1\left(\mathcal{T}_1(X)\right) = \left(\eta_1\cdot\mathcal{T}_1\cdot
+  \mathcal{T}_2^{-1}\right)\left(\mathcal{T}_2(X)\right) =
+\eta_2\left(\mathcal{T}_2(X)\right)$. This means that if the network $\eta_1$ is the most accurate
+network for the encoding $\mathcal{T}_1$, using another encoding $\mathcal{T}_2$ for the same
+problem requires designing another network
+$\eta_2 = \eta_1\cdot\mathcal{T}_1\cdot \mathcal{T}_2^{-1}$. However, this network may be of
+complicated architecture to be able to ``decode'' a terse or complex pattern $\mathcal{T}_2(X)$. The
+behavior of the three encodings BinE, OneE, and TwoE in this paper can be seen in the light of this
+discussion. The most terse representation is the BinE ($n=8$) and the most sparse representation is
+the OneE ($n=181$); and in between comes our TwoE ($n=41$) as a smart design and compromise between
+the low dimensionality of BinE and the self-decoded nature of the OneE
+(Sec.~\ref{sec:data-encoding}). This may be a qualitative interpretation to why the accuracy of the
+best models was always possessed by the TwoE, yet with one exception at the BinE
+(Sec.~\ref{sec:arabic-results}). However, from Figures~\ref{fig:ArabicModelsResults} and
+\ref{english_results}, the rug plots reveal that the populations of accuracy at different
+encodings do interleave and each encoding can perform better than others at some experiments. We
+emphasize that this effect is an artifact to the non exhaustive network configuration parameters and
+experiments conducted in this research. Had we covered the configuration parameter space then all
+encoding methods would produce the same accuracy, yet at different network architectures, as each
+encoding requires the right network architecture to learn from (or to ``decode'').
+
+
+Sec.~\ref{sec:param-netw-conf} detailed the network configuration parameters for both Arabic
+datasets (\{4L, 7L\} $\times$ \{82U, 50U\} $\times$ \{0W, 1W\} $\times$ \{LSTM, BiLSTM\} = 16
+networks) and for English dataset (\{3L, 4L, 5L, 6L, 7L, 8L\} $\times$ \{30U, 40U, 50U, 6U\}
+$\times$ \{LSTM,\ BiLSTM,\ GRU,\ BiGRU\} = 96 networks). Each experiment runs almost in one hour (30
+epochs $\times$ 2 min/epoch) on the mentioned hardware (Sec.~\ref{sec:model}). The total run time of
+all network configurations on all data representations for both Arabic and English datasets was
+$16\times 12+96\times 2 = 384$ hours, i.e., more than two weeks! We are currently working on more
+exhaustive set of experiments to cover a good span of the network configuration parameter space to
+both confirm the above discussion on encoding and to boost the per-class accuracy on both datasets.
+
+\bigskip
+
+The per-class accuracy for both datasets needs investigation; in particular, the interesting trend
+between the per-class accuracy and the class size of the Arabic dataset needs more investigation. We
+speculate that this is a mere correlation that does not imply causation; and the reason for this
+trend may be attributed to the difficulty of, or the similarity between, the meters having small
+class size. This difficulty, or similarity, may be what is responsible for the low accuracy
+(Figure~\ref{fig:footn-both-models}) on a hand, and the lack of interest of poets to compose at
+these meters, which resulted in their scarcity (Figure~\ref{fig:footn-footn-class}), on the other
+hand.
+
+Diacritic effect is explained in Sec.~\ref{sec:results}; experiments with diacritics scored higher
+than those without diacritics only when small class size were trimmed from the datasets (1T). When
+including the whole dataset (0T) the effect of diacritics was not consistent. This interesting
+phenomenon needs more investigation, since the phonetic pattern of any meter is uniquely identified
+by diacritics (Sec.~\ref{sec:arab-poetry-text}). This may be connected to the observation above of
+the per-class accuracy.
+
+
+For more investigation of both phenomena, we are working on a randomized-test-like experiments in
+which all classes will be forced to have equal size $n$. We will study how the per-class accuracy or
+overall accuracy, along with their two individual components (precision and recall), behave and how
+the diacritic effect changes in terms of both $n$ and the number of involved classes $k$, where
+$2 \leq k \leq K$, and $K(=16)$ is the total number of meters.

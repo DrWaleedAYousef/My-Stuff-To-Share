@@ -65,16 +65,15 @@ give general advises to the technical writing in general and `LaTeX` in particul
   * Have your `LaTeX` files modular as if you write a code (`LaTeX` is exactly a code). For example,
     have each Section in a separate `tex` file to be `\input` in the main file, and so on...
   * Isolate your preamble in, e.g., `Preamble.tex` and try to make it generic for other documents.
-  * Have a separate sub-folder, e.g., called `Graphics`, to include all images. and If you have many
-    figures coded in `Tikz` or `pgfplots` it is a good idea to have them under a separate folder for
-    more organization.
+  * Have a separate sub-folder, e.g., called `Graphics`, to include all images. If you have many
+    figures coded in `Tikz` or `pgfplots` it is a good idea to have them under a separate folder,
+    e.g., `figures`, for more organization.
   * Be consistent in lower/upper case and naming conventions in everything including: names of
     files, labels of equations, figure, tables, etc.,
   * For bilingual document (in particular Arabic-English), make sure to use `XeTeX`. The document
 	will almost compile without any problem as if you are using `PDFLaTeX`. If you
 	are using Emacs, just make sure to include `(setq TeX-engine (quote xetex))` in your `.emacs`
 	file.
-
 
 # Miscellaneous-Scripts #
 Some general scripts that I created to automate things, including backing up my work (both

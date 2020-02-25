@@ -1,0 +1,60 @@
+\pgfplotsset{%
+  pointModelsFiguresStyle/.style args={#1}{%
+    color=#1,
+    mark=0,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+\pgfplotsset{%
+  pointRug/.style args={#1}{%
+    color=#1,
+    mark=-,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+\pgfplotsset{%
+  pointBiLSTM/.style args={#1}{%
+    color=#1,
+    mark=o,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+% LSTM
+\pgfplotsset{%
+  pointLSTM/.style args={#1}{%
+    color=#1,
+    mark=square,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+\pgfplotsset{%
+  pointBiGRU/.style args={#1}{%
+    color=#1,
+    mark=pentagon,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}
+
+\pgfplotsset{%
+  pointGRU/.style args={#1}{%
+    color=#1,
+    mark=diamond,
+    only marks,
+    mark size=1.5pt,
+    point meta=explicit symbolic,
+  }
+}

@@ -1,0 +1,59 @@
+\section{Literature review}\label{sec:literature-review}
+To the best of our knowledge, the problem addressed in the present paper has never been addressed in
+the literature. ``Learning'' poem style from text so that machines are able to classify unseen
+written poem to the right meter seems to be a novel area. However, there is some literature on
+recognizing the meters of written Arabic poem using rule-based deterministic algorithms. We did not
+find related work on English written poem. These rules are derived by humans/experts and not learned
+by machines from data. In this regard, this is quite irrelevant to our present problem, and this is
+our point of departure in this research. However, we review these methods for the sake of
+completion.
+
+\cite{Kurt2012AlgorithmForDetectionAnalysis} worked on the Ottoman Language. They converted the
+Ottoman text into a lingual form; in particular, the poem was transliterated to Latin transcription
+alphabet (LTA). Next, the text was fed to the algorithm, which uses a database containing all
+Ottoman meters, to be compared to the existing meters and then classified to the closest one.
+
+\cite{Alnagdawi2013FindingArabicPoemMeter} worked on Arabic language. They formalized the
+\textit{scansion}s, \textit{al-'arud}, and some lingual rules (like pronounced and silent rules,
+which are directly related to \textit{harakah} and \textit{sukun}) in terms of context-free grammar
+and regular expression templates. The classification accuracy was only 75\% on a very small sample
+of 128 verses.
+
+\cite{Abuata2016RuleBasedAlgorithmFor} worked on Arabic language. They designed a five-step
+deterministic \textit{algorithm} for analyzing and detecting meters. First, they input text carrying
+full diacritics for all letters. Second, they convert the input text into \textit{al-'arud} writing
+style (Sec.~\ref{sec:arab-poetry-text}) using \texttt{if-else} rules. Third, the metrical
+\textit{scansion} rules are applied, which leaves the input text as a sequence of zeros and
+ones. Fourth, each group of zeros and ones are defined as a \textit{tafa'il}
+(Table~\ref{arud:feet}). Finally, the input text is classified to the closest meter to the
+\textit{tafa'il} sequence (Table~\ref{arud:meters}). The classification accuracy of this algorithm
+is 82.2\%, on a relatively small sample of 417 verses.
+
+\bigskip
+
+It is quite important to observe that although these algorithms are deterministic rules that are fed
+by experts, alas, they did not succeed in producing high accuracy, 75\% and 82.2\%. This is in
+contrast to our featureless RNN approach that remarkably outperforms these methods by achieving
+96.38\%. The interpretation of that is clear. The rule-based algorithms cannot list all possible
+combinations of anomalies in written text, including missing diacritics on some characters, breaking
+the meter by a poet, etc; whereas, RNN will be able to ``learn'' by example the probability of these
+occurrences. Table~\ref{tab:summ-results} summarizes the accuracies and the testing sample size of
+this literature in comparison with our approach. It is even more surprising that while these
+algorithms must work on poem with diacritics, RNN accuracy only dropped about 1\% when trained on
+plain poem with no diacritics.
+
+\begin{table}[!tb]
+  \centering
+  \begin{tabular}{c c c c}
+    \toprule
+    \textbf{Ref.}& \textbf{Accuracy}& \textbf{Test Size} & \textbf{Poem}\\
+    \midrule
+    \cite{Alnagdawi2013FindingArabicPoemMeter}   & 75\%     & 128     & \multirow{3}{*}{Arabic}\\
+    \cite{Abuata2016RuleBasedAlgorithmFor}      & 82.2\%   & 417     & \\
+    This article   & 96.38\%  & 150,000 & \\
+    \midrule
+    This article   & 82.31\%  &  1,740  & English\\
+    \bottomrule
+  \end{tabular}
+  \caption{Overall accuracy of this article compared to literature.}\label{tab:summ-results}
+\end{table}

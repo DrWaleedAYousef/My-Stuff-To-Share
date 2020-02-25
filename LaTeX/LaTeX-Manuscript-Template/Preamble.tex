@@ -1,0 +1,103 @@
+\documentclass[journal,10pt,twocolumns,letter]{IEEEtran}
+\usepackage{geometry}%
+\geometry{left=0.65in, right=0.65in, top=0.70in, bottom=0.70in}
+\usepackage[numbers,sort&compress]{natbib}
+
+\let\keptmaketitle\maketitle
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=blue,
+  filecolor=blue,
+  linkcolor=blue,
+  urlcolor=blue
+}
+
+\usepackage{subcaption}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usepackage{amsfonts, amssymb, bm, amsmath}
+\usepackage{booktabs}  % for \toprule ...
+\usepackage{caption}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{graphicx, type1cm, lettrine}
+\usepackage{qtree}
+\usepackage[dvipsnames, table]{xcolor}
+\usepackage{multirow}
+\usepackage{soul}
+\usepackage{collcell}
+\usepackage{forest}
+\usepackage{setspace}
+\usepackage{graphics}
+
+
+\usepackage{fourier}
+\DeclareMathAlphabet{\mathcal}{OT1}{pzc}{m}{it}
+\DeclareSymbolFont{letters}{OML}{cmm}{m}{it}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguage{arabic}
+\newfontfamily\arabicfont[Script=Arabic]{Amiri}
+\setmainfont[Scale=0.925]{heuristica}
+\usepackage{bidipoem}
+\usepackage{tipa}
+
+% Defining colours
+\definecolor{myBlue}{HTML}{7982db}
+\definecolor{bgblue}{rgb}{0.41961,0.90784,0.90784}%
+\definecolor{bgred}{rgb}{1,0.61569,0.61569}%
+\definecolor{fgblue}{rgb}{0,0,0.6}%
+\definecolor{fgred}{rgb}{0.6,0,0}%
+\definecolor{flatBlue}{HTML}{B2B2FF}
+\definecolor{flatRed}{HTML}{FFB2B2}
+\definecolor{flatBrown}{HTML}{EAD8C5}
+\definecolor{flatGrey}{HTML}{E1E3E3}
+\definecolor{new_blue}{HTML}{517EB9}
+\definecolor{hl}{HTML}{FFEF36}
+
+%% Confusion Matrix Settings
+\newcommand\gray{gray}
+\newcommand*{\woB}[1]{\multicolumn{1}{c}{#1}}
+\newcommand\ColCell[1]{%
+  \pgfmathparse{#1 <.8? 1: 0}%
+  \ifnum\pgfmathresult=0\relax\color{white}\fi
+\pgfmathparse{1-#1}%
+\expandafter\cellcolor\expandafter[%
+\expandafter\gray\expandafter]\expandafter{\pgfmathresult}#1}
+\newcolumntype{E}{>{\collectcell\ColCell}c<{\endcollectcell}}
+
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\tikzset{
+  Above/.style={
+    midway,
+    above,
+    font=\scriptsize,
+    text width=1.5cm,
+    align=center,
+  },
+  Below/.style={
+    midway,
+    below,
+    font=\scriptsize,
+    text width=1.5cm,
+    align=center
+  }
+}
+\usetikzlibrary{arrows} % For arrows :"D
+
+\pgfplotsset{compat=1.11,
+  /pgfplots/ybar legend/.style={
+    /pgfplots/legend image code/.code={
+      \draw[##1,/tikz/.cd,bar width=1pt,yshift=0.0cm,bar shift=0pt]
+      plot coordinates {(0cm,0.0cm)};},
+  },
+}
+
+
+\let\maketitle\keptmaketitle
+\usepackage[font=footnotesize]{caption}

@@ -1,0 +1,91 @@
+\begin{tikzpicture}[x=1cm,y=1cm]
+
+  % Rectangles
+  % the space between each rectangular
+  \def \x {0.57}
+  \def \s {1} % I'll use it to shift to right
+  % A list of letters <3
+  \newcommand\letters{{"ا","بَ","حَ", "رْ", "مَ"}}
+
+  % \draw[step=0.2, gray, very thin, red] (1,-0.5) grid (4,4);
+
+  % Rectangles
+  \def \length {2.95}
+  \foreach \j in {0,...,4}
+  \draw[rounded corners=1pt] (\s+\x*\j, 0) rectangle (\s+0.5+\x*\j, \length) 
+  node[above, xshift=-0.25cm]
+  {\textarabic{\pgfmathparse{\letters[\j]}\pgfmathresult}};
+
+  % Above Annotation
+  % Cell line
+  % 0.25*10+0.09 = 2.59
+  \def \d {3.9 - 0.15}
+  \def \z {0.2}
+  \draw (\s+0.25-0.007, 3.9 ) -- (\s+2.53+0.007, 3.9 ); % the main bar
+  \draw (\s+0.25, 3.9 ) -- (\s+0.25, \d ); % sub bar #ا
+  \draw (\s+0.25*3+0.03, 3.9 ) -- (\s+0.25*3+0.03, \d ); % sub bar #ب
+  \draw (\s+0.25*5+0.15, 3.9+0.15 ) -- (\s+0.25*5+0.15, \d ) 
+  node[above, yshift=0.3cm]{\textarabic{مَرْحَبَا}}; % sub bar #ح
+  \draw (\s+0.25*7+0.2, 3.9 ) -- (\s+0.25*7+0.2, \d ); % sub bar #ر
+  \draw (\s+2.53, 3.9 )  -- (\s+2.53, \d );  % sub-bar #م
+
+  % adding numbers, vector ا
+  \node at (\s+0.25, \length - 0.25)    {0}; % the top number; using -
+  \node at (\s+0.25, \length - 0.6)     {0};
+  \node at (\s+0.25, \length - 0.95)    {0};
+  \node at (\s+0.25, \length - 1.3)     {0};
+  \node at (\s+0.25, \length - 1.65)    {0};
+  \node at (\s+0.25, \length - 2)       {0};
+  \node at (\s+0.25, \length - 2.35)    {0};
+  \node at (\s+0.25, \length - 2.7)     {1};
+
+  % distance between vectors elements
+  \def \d {0.07}
+  % adding numbers, vector ب
+  \node at (\s+0.25*3+\d*1, \length - 0.25)    {0}; % the top number; using -
+  \node at (\s+0.25*3+\d*1, \length - 0.6)     {0};
+  \node at (\s+0.25*3+\d*1, \length - 0.95)    {1};
+  \node at (\s+0.25*3+\d*1, \length - 1.3)     {0};
+  \node at (\s+0.25*3+\d*1, \length - 1.65)    {0};
+  \node at (\s+0.25*3+\d*1, \length - 2)       {1};
+  \node at (\s+0.25*3+\d*1, \length - 2.35)    {1};
+  \node at (\s+0.25*3+\d*1, \length - 2.7)     {1};
+
+
+  % adding numbers, vector ح
+  \node at (\s+0.25*5+\d*2, \length - 0.25)    {0}; % the top number; using -
+  \node at (\s+0.25*5+\d*2, \length - 0.6)     {0};
+  \node at (\s+0.25*5+\d*2, \length - 0.95)    {1};
+  \node at (\s+0.25*5+\d*2, \length - 1.3)     {0};
+  \node at (\s+0.25*5+\d*2, \length - 1.65)    {1};
+  \node at (\s+0.25*5+\d*2, \length - 2)       {0};
+  \node at (\s+0.25*5+\d*2, \length - 2.35)    {1};
+  \node at (\s+0.25*5+\d*2, \length - 2.7)     {1};
+
+  % adding numbers, vector ر
+  \node at (\s+0.25*7+\d*3, \length - 0.25)    {1}; % the top number; using -
+  \node at (\s+0.25*7+\d*3, \length - 0.6)     {0};
+  \node at (\s+0.25*7+\d*3, \length - 0.95)    {0};
+  \node at (\s+0.25*7+\d*3, \length - 1.3)     {1};
+  \node at (\s+0.25*7+\d*3, \length - 1.65)    {1};
+  \node at (\s+0.25*7+\d*3, \length - 2)       {0};
+  \node at (\s+0.25*7+\d*3, \length - 2.35)    {1};
+  \node at (\s+0.25*7+\d*3, \length - 2.7)     {1};
+
+  % adding numbers, vector م
+  \node at (\s+0.25*9+\d*4, \length - 0.25)    {0}; % the top number; using -
+  \node at (\s+0.25*9+\d*4, \length - 0.6)     {0};
+  \node at (\s+0.25*9+\d*4, \length - 0.95)    {1};
+  \node at (\s+0.25*9+\d*4, \length - 1.3)     {1};
+  \node at (\s+0.25*9+\d*4, \length - 1.65)    {1};
+  \node at (\s+0.25*9+\d*4, \length - 2)       {1};
+  \node at (\s+0.25*9+\d*4, \length - 2.35)    {0};
+  \node at (\s+0.25*9+\d*4, \length - 2.7)     {1};
+
+  % Vector size annotations.
+  % figures starts at x = 1
+  \def \vColumn {0.6} % Annotation x=0.4
+  \draw[arrows=->] (\vColumn, 1.7) -- (\vColumn, 2.9); % up-line
+  \draw[arrows=<-] (\vColumn, 0.1) -- (\vColumn, 1.1) node[above, yshift=0.07cm] {\small{8}};
+
+\end{tikzpicture}

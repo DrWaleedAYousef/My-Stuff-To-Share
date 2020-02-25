@@ -1,0 +1,35 @@
+\begin{axis}[
+  symbolic x coords={Iambic,Trochaic,Anapaestic,Dactyl},
+  xtick=data,
+  every axis y label/.style= {at={( 0.1, 1.1)}, anchor=north},
+  x tick label style={font=\footnotesize},
+  height=7cm,
+  x=0.5cm,
+  ylabel={Accuracy},
+  enlarge x limits=0.3,
+  enlarge y limits=0.07,
+  x tick label style={rotate=90, anchor=east},
+  /pgf/bar width=20pt,
+  at={($(left plot.south east)+(1.5cm,0)$)},
+  title={\small (b) \textit{Per-class Accuracy}},
+  title style={at={(0.5,-.4)}}
+  ]
+
+    \addplot[mark=triangle*, every mark/.append style={rotate=180},
+thin, only marks, mark size=1.5pt, point meta=explicit symbolic, opacity=0.4]
+   coordinates {
+    % Ordering does not effect.
+      (Iambic,     0.9099264705882353)
+      (Anapaestic, 0.9788732394366197)
+      (Trochaic,   0.8827977315689981)
+      (Dactyl,     0.6535714285714286)
+    };
+
+  \draw[line width=0.1pt, densely dashed]
+      (axis cs:Iambic,       0.9099264705882353)
+   -- (axis cs:Trochaic,     0.8827977315689981 )
+   -- (axis cs:Anapaestic,   0.9788732394366197)
+   -- (axis cs:Dactyl,       0.6535714285714286);
+
+
+\end{axis}

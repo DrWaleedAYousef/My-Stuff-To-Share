@@ -1,0 +1,132 @@
+\section{Datasets: Acquisition, Encoding, and Repository}\label{sec:datasets}
+Sec.~\ref{sec:arabic_english_dataset} explains how the Arabic and English datasets were scraped from
+different non-technical web sources; and hence needed a lot of cleaning and structuring. For future research on
+these datasets, and probably for collecting more poem datasets, we launched the data repository
+``Poem Comprehensive Dataset (PCD)''~\citep{Yousef2018PoemComprehensiveDataset} that is publicly
+available for the whole community. The datasets on this repository are in their final clean formats
+and ready for computational purposes. Sec.~\ref{sec:data-encoding} explains the data encoding at the
+character level before feeding to the RNN\@.
+
+\subsection{Arabic and English Datasets Acquisition}\label{sec:arabic_english_dataset}
+\begin{figure}[!tb]
+  \centering
+  \begin{tikzpicture}[scale=0.8]
+    \input{figures/dataset_size_ar.tex}
+    \input{figures/dataset_size_en.tex}
+  \end{tikzpicture}%
+  \caption{\footnotesize Class size (number of verses), of both Arabic and English datasets, ordered
+    descendingly on $y$ axis vs.\ corresponding meter name on $x$
+    axis.}\label{fig:footn-footn-class}
+\end{figure}
+We have scrapped the Arabic dataset from two big poetry websites~\citep{diwan,
+  PoetryEncyclopedia2016}; then both are merged into one large dataset. The total number of verses
+is 1,862,046. Each verse is labeled by its meter, the poet who authored it, and the age it belongs
+to. Overall, there are 22 meters, 3701 poets and 11 ages: Pre-Islamic, Islamic, Umayyad, Mamluk,
+Abbasid, Ayyubid, Ottoman, Andalusian, the era between Umayyad and Abbasid, Fatimid, and modern. We are
+only interested in the 16 classic meters which are attributed to \textit{Al-Farahidi}. These meters
+comprise the majority of the dataset with a total number of 1,722,321
+verses. Figure~\ref{fig:footn-footn-class}-a is an ordered bar chart of the number of verses per
+meter. It is important to mention that the state of verse diacritic is inconsistent; a verse can
+carry full, partial, or no diacritics. This should affect the accuracy results as discussed in
+Sec.~\ref{sec:discussion}.
+
+The English dataset is scraped from many different web
+resources~\cite{HuberEighteenthCenturyPoetryArchive}. It consists of 199,002 verses; each of them is
+labeled with one of the four meters: \textit{Iambic}, \textit{Trochee}, \textit{Dactyl} and,
+\textit{Anapaestic}. Since the \textit{Iambic} class dominates the dataset with 186,809 verses, we
+downsampled it to 5550 verses to keep classes almost balanced. Figure~\ref{fig:footn-footn-class}-b
+is an ordered bar chart of the number of verses per meter.
+
+\bigskip
+
+For both Arabic and English datasets, data cleaning was tedious but necessary step before direct
+computational use. The poem contained non-alphabetical characters, unnecessary in-text white spaces,
+redundant glyphs, and inconsistent diacritics. E.g., the Arabic dataset in many places contained two
+consecutive \textit{harakah} on the same letter or a \textit{harakah} after a white space. In
+addition, as a pre-encoding step, we have factored a letter having either \textit{shaddah} or
+\textit{tanween} into two letters, as explained in Sec.~\ref{sec:arabic-language}. This step
+shortens the encoding vector and saves more memory as explained in the next section. Each of the
+Arabic and English datasets, after merging and cleaning, is labeled and structured in its final
+format that is made publicly available \citep{Yousef2018PoemComprehensiveDataset} as introduced
+above.
+
+
+\subsection{Data Encoding}\label{sec:data-encoding}
+\begin{figure*}[!tb]
+  \centering
+  \input{figures/encoding_three_figures_together.tex}
+  \caption{Three encoding schemes: \textit{One-hot} (a), \textit{binary} (b), and \textit{two-hot}
+    (c). The example word \textarabic{مَرْحَبَا} consists of 5 letters and is used to illustrate the
+    \textit{one-hot} and \textit{binary} encodings. One of its letters \textarabic{بَ} is selected as
+    an example to illustrate the \textit{two-hot} encoding (c).}\label{fig:One-Binary-Encoding}
+\end{figure*}
+It was introduced in Sec.~\ref{sec:arab-poetry-text} that a poem meter, in particular Arabic poem,
+is a phonetic pattern of vowels and consonants that is inferred from \textit{harakah} and
+\textit{sukun} of the written text. It is therefore obvious that text should be fed to the network
+at the character (not word) level. Characters are categorical predictors, and therefore character
+encoding is necessary for feeding them to any form of Neural Networks (NN). Categorical variable
+encoding has an impact on the neural network performance. (We elaborate on that upon discussing the
+results in Sec.~\ref{sec:discussion}). E.g.,~\cite{Potdar2017ComparativeStudyCategoricalVariable} is
+a comparative study for six encoding techniques. They have trained NN on the \textit{car evaluation}
+dataset after encoding the seven ordered qualitative
+features.~\cite{Agirrezabal2017ComparisonFeatureBasedNeural} shows that representations of data
+learned from character-based neural models are more informative than the ones from hand-crafted
+features.
+
+In this research, we have used the two known encoding schemes \textit{one-hot} and \textit{binary},
+in addition to the \textit{two-hot} that we introduced for more efficient encoding of the Arabic
+letters. Before explaining these three encoding schemes, we need to make the distinction clear
+among: letters, diacritics, characters (or symbols), and encoding vectors. In English language (and
+even in Latin that has letters with diacritics, e.g., \textit{ê, é, è, ë, ē, ĕ, ě}), each letter is
+considered a standalone character (or symbol) with a unique Unicode. Each of them is encoded to a
+vector, whose length $n$ depends on the encoding scheme. Then, a word, or a verse, consisting of $p$
+letters (or characters in this case) would be represented as $n \times p$ matrix. However, in Arabic
+Language, diacritics are treated differently in the Unicode system. A diacritic is considered a
+standalone character (symbol) with a unique Unicode (in contrast to Latin diacritics as just
+explained). E.g., the Arabic letter \textarabic{بَ}, which is the letter \textarabic{ب} accompanied
+with the diacritic \textarabic{◌َ}, is considered in Unicode system as two consecutive characters,
+the character \textarabic{ب} followed by the character \textarabic{◌َ}, where each has its own
+Unicode. Based on that, Arabic and English text are encoded using each of the three encoding methods
+as follows.
+
+\bigskip
+
+\subsubsection{One-Hot encoding}\label{sec:one-hot-encoding}
+In English, there are 26 letters, a white-space, and an apostrophe; hence, there are 28 final
+characters. In \textit{one-hot} encoding each of the 28 characters will be represented by a vector
+of length $n=28$ having a single one and 27 zeros; hence, this is a sparse encoding. In Arabic, we
+will represent a combination of a letter and its diacritic together as a single encoding
+vector. Since, from Sec.~\ref{sec:arabic-language}, there are 36 letters, 4 diacritics and a
+white-space, and since a letter may or may not have a diacritic whereas the white-space cannot,
+there is a total of $36 \times (4+1) + 1 = 181$ combinations. Hence, the encoding vector length is
+$n=181$; each vector will have just a single one and 180 zeros.
+
+
+\subsubsection{Binary Encoding}\label{sec:binary-encoding}
+In binary encoding, an encoding vector of length $n$ contains a unique binary combination in
+contrast to the sparse \textit{one-hot} encoding representation. Therefore, the encoding lengths of
+English and Arabic are $\ceil{\log_2 28} = 5$ and $\ceil{\log_2 181} = 8$ respectively, which is a
+huge reduction in dimensionality. However, this will be on the expense the challenge added to find
+the best network architecture design that is capable of decoding this scheme
+(Sec.~\ref{sec:discussion}).
+
+
+\subsubsection{Two-Hot encoding}\label{sec:two-hot-encoding}
+For Arabic language, where diacritics explode the length of the \textit{one-hot} encoding vector to
+181, we introduce this new encoding. In this encoding, the 36 letters and the white-space on a hand
+and the 4 diacritics on the other hand are encoded separately using two \textit{one-hot} encoding
+vectors of lengths $n=37$ and $n=4$ respectively. The final \textit{two-hot} encoding of a
+letter with a diacritic is the stacking of the two vectors to produce a final encoding vector of
+length $n=37+4 = 41$. Clearly, a letter with no diacritic will have 4 zeros in the diacritic portion
+of the encoding vector.
+
+Figure~\ref{fig:One-Binary-Encoding} illustrates the three encoding schemes. The \textit{one-hot}
+and \textit{binary} encoding of the whole 5-letter word \textarabic{مَرْحَبا} are illustrated as
+$181 \times 5$ and $8 \times 5$ matrices respectively (Figures~\ref{fig:One-Binary-Encoding}-a,
+\ref{fig:One-Binary-Encoding}-b). In Figure~\ref{fig:One-Binary-Encoding}-c only the second letter
+of the word, \textarabic{بَ}, is taken an example to illustrate the \textit{two-hot} encoding. It is
+obvious that the \textit{one-hot} is the most lengthy encoding; however, it is straightforward for
+networks to decode since no two vectors share the same position of `1'. On the other extreme, the
+\textit{binary} encoding is most economic one; however, networks may need careful design to decode
+the pattern since vectors share many positions of `1's and `0's. Efficiently, the new designed
+\textit{two-hot} encoding is almost 28\% of the size of \textit{one-hot} encoding.% ; however, still

@@ -1,0 +1,169 @@
+\begin{axis}[
+  major x tick style = transparent,
+  height=7cm,
+  legend style={at={(0.7, 0.2)},anchor=west},
+  every axis legend/.append style={nodes={right}},
+  name=left plot,
+  xtick distance=1,
+  axis x line = bottom,
+  axis y line = left,
+  xmin=0,
+  xmax=3.5,
+  x=1.5cm,
+  title={\small (a) \textit{Overall accuracy}},
+  title style={at={(0.5,-.4)}},
+  xticklabels = {, ,},
+  ymajorgrids = true,
+  nodes near coords,
+  ylabel = {Accuracy},
+  ylabel style = {font=\footnotesize},
+  ymin=0.72,
+  ymax=0.857,
+  ]
+
+
+
+  % Symbols of column 1 (the binary)
+  \addplot[pointBiGRU=blue] coordinates {
+(1, 0.8169014084507042) %tr-Experiment62 BiGRU
+
+  };
+  \addplot[pointGRU=blue] coordinates {
+(1, 0.7859154929577463) %tr-Experiment57 GRU
+  };
+  \addplot[pointLSTM=blue] coordinates {
+(1, 0.7690140845070422) %tr-Experiment53 LSTM
+
+  };
+  \addplot[pointBiLSTM=blue] coordinates {
+(1, 0.7661971830985915) %tr-Experiment72 BiLSTM
+
+  };
+
+  % Symbols of column 2 (the one hot)
+  \addplot[pointBiGRU=red] coordinates {
+    (2, 0.8264788732394366) %tr-Experiment29 BiGRU
+
+  };
+  \addplot[pointGRU=red] coordinates {
+(2, 0.8214084507042254) %tr-Experiment24 GRU
+
+  };
+  \addplot[pointLSTM=red] coordinates {
+(2, 0.8022535211267606) %tr-Experiment17 LSTM
+
+  };
+  \addplot[pointBiLSTM=red] coordinates {
+(2, 0.7650704225352113) %tr-Experiment36 BiLSTM
+
+  };
+
+  % Binary
+  \addplot[pointModelsFiguresStyle=blue, mark size=0.7pt, mark=-]
+  coordinates {
+(1, 0.7138028169014086) %tr-Experiment68
+(1, 0.7211267605633802) %tr-Experiment41
+(1, 0.7245070422535211) %tr-Experiment71
+(1, 0.7256338028169014) %tr-Experiment69
+(1, 0.7278873239436621) %tr-Experiment45
+(1, 0.7312676056338029) %tr-Experiment70
+(1, 0.7357746478873239) %tr-Experiment39
+(1, 0.7380281690140845) %tr-Experiment67
+(1, 0.7414084507042253) %tr-Experiment40
+(1, 0.7425352112676056) %tr-Experiment44
+(1, 0.7447887323943663) %tr-Experiment42
+(1, 0.7447887323943663) %tr-Experiment47
+(1, 0.7498591549295774) %tr-Experiment51
+(1, 0.7526760563380281) %tr-Experiment49
+(1, 0.7543661971830986) %tr-Experiment43
+(1, 0.7571830985915493) %tr-Experiment50
+(1, 0.7588732394366198) %tr-Experiment48
+(1, 0.7622535211267607) %tr-Experiment38
+(1, 0.7650704225352112) %tr-Experiment54
+(1, 0.7661971830985915) %tr-Experiment72
+(1, 0.7661971830985916) %tr-Experiment46
+(1, 0.7684507042253521) %tr-Experiment52
+(1, 0.7690140845070422) %tr-Experiment53
+(1, 0.7735211267605634) %tr-Experiment56
+(1, 0.7752112676056337) %tr-Experiment60
+(1, 0.7780281690140846) %tr-Experiment55
+(1, 0.7808450704225353) %tr-Experiment59
+(1, 0.7825352112676058) %tr-Experiment58
+(1, 0.7859154929577463) %tr-Experiment57
+(1, 0.7870422535211268) %tr-Experiment37
+(1, 0.7954929577464789) %tr-Experiment64
+(1, 0.7988732394366197) %tr-Experiment66
+(1, 0.8011267605633803) %tr-Experiment63
+(1, 0.8022535211267606) %tr-Experiment65
+(1, 0.8050704225352113) %tr-Experiment61
+(1, 0.8169014084507042) %tr-Experiment62
+  };
+  % OneHot
+  \addplot[pointModelsFiguresStyle=red, mark size=0.7pt, mark=-]
+  coordinates {
+(2, 0.7059154929577465) % tr-Experiment32
+(2, 0.716056338028169)  % tr-Experiment31
+(2, 0.7295774647887323) % tr-Experiment4
+(2, 0.7307042253521127) % tr-Experiment33
+(2, 0.7329577464788732) % tr-Experiment10
+(2, 0.7340845070422535) % tr-Experiment14
+(2, 0.7374647887323944) % tr-Experiment9
+(2, 0.7380281690140844) % tr-Experiment7
+(2, 0.7459154929577465) % tr-Experiment34
+(2, 0.755492957746479)  % tr-Experiment35
+(2, 0.7583098591549295) % tr-Experiment3
+(2, 0.7594366197183099) % tr-Experiment2
+(2, 0.7616901408450705) % tr-Experiment13
+(2, 0.7622535211267606) % tr-Experiment16
+(2, 0.7628169014084507) % tr-Experiment15
+(2, 0.763943661971831)  % tr-Experiment8
+(2, 0.7650704225352113) % tr-Experiment36
+(2, 0.7684507042253521) % tr-Experiment5
+(2, 0.779718309859155)  % tr-Experiment6
+(2, 0.7808450704225353) % tr-Experiment12
+(2, 0.7836619718309861) % tr-Experiment11
+(2, 0.7904225352112677) % tr-Experiment21
+(2, 0.8005633802816902) % tr-Experiment1
+(2, 0.8011267605633803) % tr-Experiment19
+(2, 0.8022535211267606) % tr-Experiment17
+(2, 0.8045070422535211) % tr-Experiment23
+(2, 0.8090140845070422) % tr-Experiment20
+(2, 0.8107042253521127) % tr-Experiment26
+(2, 0.811830985915493)  % tr-Experiment28
+(2, 0.8129577464788732) % tr-Experiment25
+(2, 0.815774647887324)  % tr-Experiment18
+(2, 0.816338028169014)  % tr-Experiment22
+(2, 0.8174647887323944) % tr-Experiment27
+(2, 0.8180281690140845) % tr-Experiment30
+(2, 0.8214084507042254) % tr-Experiment24
+(2, 0.8264788732394366) % tr-Experiment29
+  };
+
+
+    \addplot[pointBiLSTM=black] coordinates {(1, 0)};\label{BiLSTM}
+    \addplot[pointLSTM=black]   coordinates {(1, 0)};\label{LSTM}
+    \addplot[pointBiGRU=black]  coordinates {(1, 0)};\label{BiGRU}
+    \addplot[pointGRU=black]    coordinates {(1, 0)};\label{GRU}
+    \addplot[pointRug=red]      coordinates {(1, 0)};\label{OneHot}
+    \addplot[pointRug=blue]     coordinates {(1, 0)};\label{Binary}
+\end{axis}
+
+    % Cells legend
+    \node [draw,fill=white] at (4.3,1.2) {\shortstack[l]{
+    \ref{BiGRU} \scriptsize{BiGRU}\\
+    \ref{GRU} \scriptsize{GRU}\\
+    \ref{LSTM} \scriptsize{LSTM}\\
+    \ref{BiLSTM} \scriptsize{BiLSTM}
+    }};
+
+    % Encoding legend
+    \node [draw,fill=white] at (2.6,-0.9) {\shortstack[l]{
+    \ref{Binary} \scriptsize{\scriptsize{Binary(BinE)}}
+    \ref{OneHot} \scriptsize{\scriptsize{One-Hot(OneE)}}
+    }};
+
+\node at (7.5 * 0.2, 5.2) {\scriptsize 7L};
+\node at (7.5 * 0.2, 5.2 -0.3) {\scriptsize 40U};
+
+\node at (15 * 0.2, 5.2) {\scriptsize 4L};
+\node at (15 * 0.2, 5.2 -0.3) {\scriptsize 40U};

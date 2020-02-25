@@ -1,0 +1,164 @@
+\section{Results}\label{sec:results}
+The results of all the 192 experiments on Arabic dataset and the 192 experiments on the English
+dataset are presented and discussed; for each dataset, we start with the overall accuracy
+followed by the individual accuracy on each class (meter).
+
+
+\subsection{Results of Arabic dataset}\label{sec:arabic-results}
+\subsubsection{Overall Accuracy}\label{sec:encoding-effect}
+\begin{figure}[!tb]
+  \centering
+  \input{figures/results_ar_models_acc.tex}
+  \caption{Overall accuracy of the 192 experiments plotted as 12 vertical rug plots (one at each
+    data representation: \{0T, 1T\} $\times$ \{0D, 1D\} $\times$ \{OneE, BinE, TwoE\}); each
+    represents 16 exp. (for network configurations: \{4L, 7L\} $\times$ \{82U, 50U\} $\times$ \{0W,
+    1W\} $\times$ \{LSTM, BiLSTM\}). For each rug plot the best model of each of the two cell
+    types---(Bi-)LSTM---is labeled as circle and square respectively. BiLSTM always wins over the
+    LSTM; and its network configuration parameters are listed at the top of each rug
+    plot.}~\label{fig:ArabicModelsResults}
+\end{figure}
+First, we explain how Figure~\ref{fig:ArabicModelsResults} presents the overall accuracy of the
+16 network configurations ($y$-axis) for each of the 12 data representations ($x$-axis). The
+$x$-axis is divided into 4 strips corresponding to the 4 combinations of \textit{trimming} $\times$
+\textit{diacritic} represented as \{0T(left), 1T(right)\} $\times$
+\{0D(unshaded),1D(shaded)\}. Then, each strip includes the 3 different values of \textit{encoding}
+\{BinE, OneE, TwoE\}. For each of the 12 data representations, the
+$y$-axis represents a rug plot of the
+accuracy of the 16 experiments; (some values are too small, and hence omitted from the
+figure)\@. For each rug plot, the highest (Bi-)LSTM accuracies are labeled differently as circle and
+square respectively; and the network configuration of both of them is listed at the top of the rug
+plot. To explain the figure, we take as an example the most-left vertical rug plot, which
+corresponds to (0T, 1D, BinE) data representation. The accuracies of the best (Bi-)LSTM are 0.9025 and
+0.7978 respectively. The configuration of the former is (7L, 82U, 0W). Among all the 192
+experiments, the highest
+accuracy is 0.9638 and is possessed by (4L, 82U, 0W) network configuration on (1T, 0D, BinE) data
+representation.
+
+Next, we discuss the effect of each data representation and network configuration parameter on
+accuracy. The effect of \textit{trimming} is clear; for particular \textit{diacritic} and
+\textit{encoding}, the accuracies at 1T are consistently higher than those at 0T. E.g., the highest
+accuracy at (1T, 0D, TwoE) and (0T, 0D, TwoE) are 0.9629 and 0.9411 respectively. The only
+exception, with a very little difference, is (1T, 1D, BinE) vs.\ (0T, 1D, BinE). The effect of
+\textit{diacritic} is obvious only at 0T (the left half of the Figure), where, at particular
+\textit{encoding}, the accuracy is higher at 1D than at 0D. However, for 1T, this observation is
+only true for OneE. This result is counter-intuitive if compared to what is anticipated from the
+effect of diacritics. We think that this result is an artifact for the small number of network
+configurations. (More on that in Sec.~\ref{sec:discussion}). The effect of \textit{encoding} is
+clear as well; by looking at each individual strip out of the four strips on the $x$-axis, accuracy
+is consistently highest for OneE and TwoE than BinE---the only exception is at (1T, 0D, BinE) that
+performs better than the other two encodings. It seems that TwoE makes it easier for networks to
+capture the patterns in data. However, we believe that there is a particular network architecture
+for each encoding that is capable of capturing the same pattern with yielding the same accuracy; yet,
+the set of experiments should be conducted at higher resolution of the network configuration
+parameters space (Sec.~\ref{sec:discussion}).
+
+Next, we comment on the effect of network configuration parameters. For \textit{cell} type, it is
+obvious that for each data representation, the highest BiLSTM accuracy (circle) is consistently higher
+than the highest LSTM accuracy (square). This is what is expected from the more complex architecture of
+the BiLSTM on such a large dataset. For \textit{layers}, the more complex networks of 7 layers
+achieved the highest accuracies, except for (1T, 0D, BinE) and (1T, 0D, TwoE). The straightforward
+interpretation for that is the reduction in dataset size occurred by (1T, 0D) combination, which
+needed less complex network. For cell \textit{size} and loss \textit{weighting}, the figure shows no
+consistent effect on accuracy.
+
+\bigskip
+
+\subsubsection{Per-Class (Meter) Accuracy}\label{sec:per-class-accuracy}
+\begin{figure}[!tb]
+  \centering
+  \input{figures/results_ar_per_class_accuracy.tex}
+  \caption{The per-class accuracy for the best four models: \{\text{0T},\ \text{1T}\} $\times$
+    \{\text{0D},\ \text{1D}\}; the $x$-axis is sorted by class size as in
+    Figure~\ref{fig:footn-footn-class}. There is a descending trend with the class size, with the
+    exception at \textit{Rigz} meter.}\label{fig:footn-both-models}
+\end{figure}
+Next, we investigate the per-class accuracy. For each of the four combinations of
+\textit{trimming} $\times$ \textit{diacritic}, we select the best accuracy out of the three possible
+encodings. From Figure~\ref{fig:ArabicModelsResults}, it is clear that all of them will be at TwoE,
+except (1T, 0D, BinE), which is the best overall model as discussed above.
+
+Figure~\ref{fig:footn-both-models} displays the per-class accuracy of these four models. The class
+names (meters) are ordered on the $x$-axis according to their individual class size (the same order
+of Figure~\ref{fig:footn-footn-class}). Several comments are in order. The overall accuracy of each of
+the four models is around 0.95 (Figure~\ref{fig:ArabicModelsResults}); however, for the four models
+the per-class accuracy of only 6 classes is around this value. For some classes the accuracy drops
+significantly. Moreover, the common trend for the four models is that the per-class accuracy
+decreases with the class size for the first 11 classes. Then, the accuracy of the two models with
+\textit{trimming} keeps decreasing significantly for the remaining 5 classes. Although this
+trend is associated with class size, this could only be correlations without causation. This
+phenomenon, along with what was concluded above for the inconsistent effect of loss
+\textit{weighting}, emphasize the importance of a more prudent design of the \textit{weighting}
+function. In addition, the same full set of experiments can be re-conducted with enforcing all
+classes to have equal size to assert/negate the causality assumption (Sec.~\ref{sec:discussion}).
+
+\bigskip
+
+\subsubsection{Encoding Effect on Learning rate and Memory
+  Utilization}\label{sec:learning-rate-memory}
+\begin{figure}[!tb]
+  \centering
+  \begin{tikzpicture}[scale=0.85]
+    \input{figures/results_ar_convergence.tex}
+  \end{tikzpicture}
+  \caption{Encoding effect on learning rate of the best model configurations (1T, 0D, 4L, 82U, 0W)
+    with each of the three encodings.}~\label{fig:ConvergenceMemory}
+\end{figure}
+Figure~\ref{fig:ConvergenceMemory}-a shows the learning curve of the best model (4L, 82U, 0W, 1T,
+0D, BinE), which converges to 0.9638, the same value displayed on
+Figure~\ref{fig:ArabicModelsResults}. The Figure displays, as well, the learning curve of the same
+model and parameters but with using the other two encodings. The Figure shows no big difference in
+convergence speed among different encodings.
+
+
+\subsection{Results of English Dataset}\label{sec:english-results}
+The result presentation and interpretation for the experiments on English dataset are much easier
+because of the absence of \textit{diacritic}, \textit{trimming}, and loss \textit{weighting}
+parameters. The relative size of the two datasets has to be brought to attention; from
+Figure~\ref{fig:footn-footn-class}, there is almost a factor of 100 in favor of the Arabic dataset.
+
+\bigskip
+
+\subsubsection{Overall Accuracy}\label{sec:overall-accuracy}
+\begin{figure}[!tb]
+  \centering
+  \begin{tikzpicture}[scale=0.8]
+    \input{figures/results_en_models_acc.tex}
+    \input{figures/results_en_per_class_acc.tex}
+  \end{tikzpicture}
+  \caption{Accuracy of experiments on English dataset. (a) Overall accuracy of the 192
+    experiments plotted as 2 vertical rug plots (one at each data representation: \{OneE, BinE\});
+    each represents 96 exp. (for network configurations: \{3L, 4L, 5L, 6L, 7L, 8L\} $\times$ \{30U,
+    40U, 50U, 60U\} $\times$ \{LSTM,\ BiLSTM,\ GRU,\ BiGRU\}). For each rug plot the best model of each
+    of the four cell types---(Bi-)LSTM and (Bi-)GRU---is labeled differently. Consistently, the BiGRU
+    was the winner, and its network configuration parameters are listed at the top of each rug
+    plot. (b) The per-class accuracy for the best model of the 192 experiments; the $x$-axis is
+    sort by the class size as in Figure~\ref{fig:footn-footn-class}. No particular trend with the
+    class size is observed.}~\label{english_results}
+\end{figure}
+
+Similar to Figure~\ref{fig:ArabicModelsResults}, Figure~\ref{english_results}-a displays the accuracy of 96 network configurations ($y$-axis) for each of the 2 dataset representations
+($x$-axis). The Figure shows that the highest accuracy, 0.8265, is obtained using (4L, 40U,
+OneE), and BiGRU network. The \textit{encoding} is the only parameter for data representation. OneE
+achieves higher accuracy than, but close to, BinE. Once again, we anticipate that experimenting
+with more network configuration should resolve this difference (Sec.~\ref{sec:discussion}).
+
+For Network configuration parameters, we start with the \textit{cell} type. At each encoding, the
+best accuracy of each \textit{cell} type in descending order is: BiGRU, GRU, LSTM, then
+BiLSTM\@. (Bi-)GRU models may by more suitable for this smaller size dataset. For \textit{layers},
+the best models on OneE was 3L and on BinE was 7L. In contrast to the Arabic dataset, the simple 4L
+achieved a better accuracy than the complex 7L, with no clear effect of cell \textit{size}. (More
+discussion on that in Sec.~\ref{sec:discussion}).
+
+\bigskip
+
+\subsubsection{Per-Class (Meter) Accuracy}\label{sec:per-class-meter}
+Figure~\ref{english_results}-b is a per-class accuracy for the best model (4L, 40U, OneE, BiGRU);
+the meters are ordered on the $x$-axis descendingly with the class size as in
+Figure~\ref{fig:footn-footn-class}-b. It is clear that class size is not correlated with
+accuracy. Even for the smallest class, Dactyl, its size is almost one third the Iambic class
+(Figure~\ref{fig:footn-footn-class}-b), which is not a huge skewing factor. A more reasonable
+interpretation is this. Dactyl meter is pentameter or more; while other meters have less
+repetitions. This makes Dactyl verses very distant in character space from others. And since the
+network will train to optimize the overall accuracy, this may be on the expense on the class that is
+both small in size and setting distant in feature space from others. (More discussion on that in
+Sec.~\ref{sec:discussion}).

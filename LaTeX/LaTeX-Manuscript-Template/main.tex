@@ -1,0 +1,38 @@
+% Guidance: This is the main script that orchestrates the manuscript body.
+\input{Preamble.tex}
+
+% Guidance: Grouping all pgfplot configs in one place, for all figure.
+\input{figures/pgfplot_configurations.tex}
+
+\begin{document}
+
+  \input{s_Abstract.tex}
+
+  \input{s_Introduction.tex}
+
+  \input{s_Review.tex}
+
+  \input{s_Datasets.tex}
+
+  \input{s_Model.tex}
+
+  \input{s_Results.tex}
+
+  \input{s_Discussion.tex}
+
+  \input{s_Conclusion.tex}
+
+  \input{s_Acknowledgment.tex}
+
+
+\footnotesize
+\bibliographystyle{apalike}
+\bibliography{./Publications/ArabicPoemsPapersSitesBooksDatasets.bib}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

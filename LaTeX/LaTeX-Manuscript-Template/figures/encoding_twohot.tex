@@ -1,0 +1,92 @@
+% Defining a new box
+\newsavebox{\columnVector}
+% Populating the box
+\savebox{\columnVector}{$\left[\begin{smallmatrix}k\\m\end{smallmatrix}\right]$}
+
+\begin{tikzpicture}
+
+  % The grid
+  % \draw[step=0.5, gray!40, very thin] (0,0) grid (6,4);
+
+  \def \recWidthA {0.5}
+  \def \yStartA   {1.5}
+  \def \yEndA     {3}
+  \def \xStartA   {1.5}
+  \def \xEndA     {0.5}
+  \def \xStartB   {0}
+  \def \yStartB   {1}
+  \def \xEndB     {2}
+  \def \yEndB     {3.5}
+  \def \half      {\yEndA/2 - \yStartA/2}
+  \def \xStartC   {3 +0.5}
+  \def \yStartC   {0.5 -.1}
+  \def \xEndC     {3.5 +0.5}
+  \def \yEndC     {4 +.1 }
+  \def \shiftMargin {0.3}
+  \newcommand\numbers{{0.25, 0.6, 0.95, 1.3, 1.65, 2, 2.35, 2.7}}
+
+  % Rectangle A
+  \draw[rounded corners=2pt] (\xStartA, \yStartA) rectangle (\xStartA + \recWidthA, \yEndA)
+  node [above, xshift=-.25cm] {\textarabic{◌َ}};
+  % Populating the rectangle A
+  \node at (0.25 + \xStartA, 3 -\numbers[0]) {1};
+  \foreach \j in {1,...,3}
+  \node at (0.25 + \xStartA, \yEndA -\numbers[\j]) {0};
+
+  % Annotation A
+  \node at (\xStartA-\shiftMargin, \yStartA + \half) {\small 4};
+  \draw[arrows=-angle 90, very thin] (\xStartA-\shiftMargin, \yStartA + \half +.3) -- (\xStartA-\shiftMargin, \yEndA -0.1);
+  \draw[arrows=angle 90-, very thin] (\xStartA-\shiftMargin, \yStartA + .1) -- (\xStartA-\shiftMargin, \yStartA + \half -.3);
+
+  % Rectangle B
+  \draw[rounded corners=2pt] (\xStartB +0.5, \yStartB) rectangle (\yStartB +0.5 -1.5, \yEndB)
+  node[above, xshift=0.25cm] {\textarabic{ب}};
+  \node at (\xStartB +0.25, \yEndB -\numbers[0]) {0};
+  \node at (\xStartB +0.25, \yEndB -\numbers[1]) {1};
+  \node at (\xStartB +0.25, \yEndB -\numbers[2]) {0};
+  \node at (\xStartB +0.25, \yEndB -\numbers[3]) {0};
+  \node at (\xStartB +0.25, \yEndB -\numbers[4] ) {\vdots};
+  \node at (\xStartB +0.25, \yStartB +\numbers[0]) {0};
+
+  % Annotation B
+  \node at (-\shiftMargin, \yStartA + \half) {\small 37};
+  \draw[arrows=-angle 90, very thin] (-\shiftMargin, \yStartA + \half +.3) -- (-\shiftMargin, \yEndB -0.1);
+  \draw[arrows=angle 90-, very thin] (-\shiftMargin, \yStartB + .1) -- (-\shiftMargin, \yStartA + \half -.3);
+
+  \node at (0.8, \yStartA +\half) {$+$};
+  \node at (2.5 + .02, \yStartA +\half) {$=$};
+
+  % Rectangle C
+  \draw[rounded corners=2pt]  (\xStartC, \yStartC) rectangle (\xEndC, \yEndC)
+  node[above, xshift=-0.25cm] {\textarabic{بَ}};
+  ;
+  \node at (\xStartC +0.25, \yEndC -\numbers[0]) {1};
+  \node at (\xStartC +0.25, \yEndC -\numbers[1]) {0};
+  \node at (\xStartC +0.25, \yEndC -\numbers[2]) {0};
+  \node at (\xStartC +0.25, \yEndC -\numbers[3]) {0};
+
+  \node at (\xStartC +0.25, \yEndC -\numbers[4] -.2) {0};
+  \node at (\xStartC +0.25, \yEndC -\numbers[5] -.2) {1};
+  \node at (\xStartC +0.25, \yEndC -\numbers[6] -.2) {0};
+  \node at (\xStartC +0.25, \yEndC -\numbers[7] -.2) {\vdots};
+  \node at (\xStartC +0.25, \yStartC +\numbers[0]) {0};
+
+  % Annotation
+  \node at (\xStartC -\shiftMargin, \yStartA +\half) {\small 41};
+  \draw[arrows=-angle 90, very thin]  (\xStartC -\shiftMargin, 2.5) -- (\xStartC -\shiftMargin, \yEndC -0.1);
+  \draw[arrows=angle 90-, very thin]  (\xStartC -\shiftMargin, 0.5) -- (\xStartC -\shiftMargin, 2);
+
+  \draw [decorate,decoration={brace,amplitude=2pt,mirror,raise=2pt}, very thin]
+  (\xEndC +\shiftMargin -.1, 2.5 +.2) -- (\xEndC +\shiftMargin  -.1, \yEndC -0.1);
+
+  \draw [decorate,decoration={brace,amplitude=2pt,mirror,raise=2pt}, very thin]
+  (\xEndC +\shiftMargin -.1, 0.5) -- (\xEndC +\shiftMargin -.1, 2.4);
+
+
+  \node [rectangle, text width= 5em,font=\footnotesize] at (5.6, 3.4)
+    {\scriptsize $4 \times 1$ encoding vector representing diacritic \textarabic{◌َ}};
+
+  \node [rectangle, text width= 5em,font=\footnotesize] at (5.6, 1.4)
+    {\scriptsize $37 \times 1$ encoding vector representing letter \textarabic{ب}};
+
+\end{tikzpicture}

@@ -1,0 +1,33 @@
+\begin{axis}[
+    ylabel={Verses},
+        symbolic x coords={Iambic, Trochee, Anapaestic, Dactyl},
+        xtick=data,
+        every axis y label/.style= {at={( 0.5, 1.07)}, anchor=north},
+        ylabel style={font=\footnotesize},
+        xticklabel style = {font=\footnotesize},
+        height=8cm,
+        x=0.5cm,
+        enlarge x limits=0.3,
+        enlarge y limits=0.07,
+        nodes near coords,
+        x tick label style={rotate=90, anchor=east},
+        y tick label style={scaled ticks=base 10:-3},
+        ymin=0,
+        at={($(left plot.south east)+(0.7cm,0)$)},%
+        title=(b) \textit{English Dataset},%
+        title style={at={(0.5,-.4)}}%
+      ]
+
+  \addplot[mark=*, only marks,
+    point meta=explicit symbolic] coordinates {
+    (Trochee,    5418)
+    (Anapaestic, 5378)
+    (Dactyl,     1397)
+    (Iambic,     5550)
+};
+
+    \draw[loosely dotted] (axis cs:Trochee, 0) -- (axis cs:Trochee, 5418);
+    \draw[loosely dotted] (axis cs:Anapaestic, 0) -- (axis cs:Anapaestic, 5378);
+    \draw[loosely dotted] (axis cs:Dactyl, 0) -- (axis cs:Dactyl, 1397);
+    \draw[loosely dotted] (axis cs:Iambic, 0) -- (axis cs:Iambic, 5550);
+\end{axis}%
