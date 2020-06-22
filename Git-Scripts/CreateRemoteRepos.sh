@@ -16,7 +16,7 @@
 
 REMREP="AnyRemoteRep" #can be any new repo name; however, if this repo exists remotely it will be
 			#overwritten with a force push as exaplained above (so TAKE CARE).
-LOCREP="/home/wyousef/Downloads/AAMyDocumentsAA/Reps/DrWaleedAYousef" #The local path of the repo.
+LOCREP="/home/wyousef/Downloads/AAMyDocumentsAA/Reps/DrWaleedAYousef/AnyRemoteRep" #The local path of the repo.
 USR="DrWaleedAYousef"
 REMOTE="https://github.com"
 
