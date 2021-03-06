@@ -2,5 +2,6 @@
 - wyousef/Desktop
 - wyousef/vmware
 - wyousef/tmp
-
+- wyousef/Mail
+- wyousef/.*
 
