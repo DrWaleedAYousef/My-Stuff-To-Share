@@ -11,24 +11,25 @@ write your own to automate your work.
 2. spreading the benefit, since I am sure these scripts are beneficial for their own sake.
 
 
-# Emacs #
+# [Backup](./Backup) #
+Some general scripts that I created to automate backups, even incremental.
+
+# [Emacs](./Emacs) #
 Here, I put Emacs related files, including of course my `.emacs` configuration file. Currently, I do
 not consider myself an expert in Emacs since I cannot customize everything fluently in LISP; you
 will find many very sophisticated `.emacs` files over the net. However, my `.emacs` file can be a
 good start for novices to Emacs.
 
-
-# Git-Scripts #
+# [Git](./Git) #
 These are a set of miscellaneous scripts that I created to ease using git, including creating,
 deleting, etc. completely from the command line without signing into the web interface
 [Github](Github.com).
 
-
-# LaTeX #
+# [LaTeX](./LaTeX) #
 This is a set of LaTeX templates, scripts, and modules that I usually use to prepare my lecture
 notes and other documents. They can be very helpful for anyone composing similar documents.
 
-## BibTeX ##
+## [BibTeX](./LaTeX/BibTeX) ##
 Is a simple folder that accounts for an example for all students how to organize your library using
 the "power of text" to git rid of other software. The folder contains a `bib` file, along with
 `pdf`s. The `bib` file is your library that contains articles, books, etc. Each item has a key that
@@ -39,12 +40,12 @@ possible. When adding a keyword to a new item, it should be selected from the ex
 add a new one). This is to avoid having two keywords with different spelling styles (e.g.,
 Microcalcification and micro-calcification).
 
-## LaTeX-Lecture-Template ##
+## [LaTeX-Lecture-Template](./LaTeX/LaTeX-Lecture-Template) ##
 Contains the LaTeX template that I always use in preparing the lecture notes. If you compile the
 `.tex` file, you will get exactly the same `pdf` part (chapter 1 as a sample) of the Digital Design
 course.
 
-## LaTeX-Lecture-Template-Preparation-Script ##
+## [LaTeX-Lecture-Template-Preparation-Script](./LaTeX/LaTeX-Lecture-Template-Preparation-Script) ##
 This script is very beneficial for producing a lengthy document like the lecture notes. This script
 is to save the nonsense time and effort wasted in writing `\chapter{} \section{} \includegraphics
 ...` insanely many times for each chapter, section, figure, etc. You just need to have a directory
@@ -57,7 +58,7 @@ all the stuff for you. Of course, you can change the `FrontMatterTemplate.tex` a
 it to generate the `pdf` which contains all the chapter titles, section titles, and all the
 graphics.
 
-## LaTeX-Manuscript-Template ##
+## [LaTeX-Manuscript-Template](./LaTeX/LaTeX-Manuscript-Template) ##
 This section is still under preparation, so it will be sort of improvising. It is an example for a
 manuscript uses many `LaTeX` modules, e.g., `Tikz`, `pgfplot`, etc. I will leverage this section to
 give general advises to the technical writing in general and `LaTeX` in particular.
@@ -79,7 +80,12 @@ figures in pgfplot and tikz, using organized bibtex, etc.
 	will almost compile without any problem as if you are using `PDFLaTeX`. If you
 	are using Emacs, just make sure to include `(setq TeX-engine (quote xetex))` in your `.emacs`
 	file.
+    
+## [LaTeX-Tree-Preparation](./LaTeX/LaTeX-Tree-Preparation) ##
+This is to compile ONLY those files in your local folder tree that are called by
+a particular LaTeX project, with (or without) preserving the directory
+structure. This is very helpful to isolate those files required for compilation,
+from other files.
 
-# Miscellaneous-Scripts #
-Some general scripts that I created to automate things, including backing up my work (both
-incremental or full backups), auto-downloading a series of files, etc.
+# [Recording](./Recording) #
+Some general scripts that I created to automate recording my lectures on [FCIHOCW](https://www.youtube.com/FCIHOCW). I did not upload the full list of scripts yet.
