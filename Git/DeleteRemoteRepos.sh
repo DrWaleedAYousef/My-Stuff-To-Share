@@ -1,10 +1,18 @@
 #!/bin/sh
 
-REP="TMP"
+REMREP="TMP"
+ACCOUNT="MY"
+
+case $ACCOUNT in
+    MY           )
+        URL="https://api.github.com/repos/DrWaleedAYousef";;
+
+    ISOT           )
+        URL="https://api.github.com/repos/isotlaboratory";;
+
+    HCILAB )
+        URL="https://api.github.com/repos/hci-lab";;
+esac
+
 USR="DrWaleedAYousef"
-REMOTE="https://api.github.com/repos"
-
-curl -u "$USR" -X "DELETE" "$REMOTE/$USR/$REP"
-
-### from the command line:
-# curl -u DrWaleedAYousef -X "DELETE" https://api.github.com/repos/DrWaleedAYousef/REP
+curl -u "$USR" -X "DELETE" "$URL/$REMREP"

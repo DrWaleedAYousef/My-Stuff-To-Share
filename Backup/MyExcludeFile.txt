@@ -4,4 +4,4 @@
 - wyousef/tmp
 - wyousef/Mail
 - wyousef/.*
-
+- /.git
