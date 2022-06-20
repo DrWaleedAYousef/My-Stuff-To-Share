@@ -1,7 +1,7 @@
 #!/bin/sh
 
-REMREP="TMP"
-ACCOUNT="MY"
+REMREP="AnyRemoteRep"
+ACCOUNT="ISOT"
 
 case $ACCOUNT in
     MY           )

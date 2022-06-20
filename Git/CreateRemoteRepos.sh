@@ -2,7 +2,7 @@
 ######### Git initialization local and remote repos #########
 # Created By: Waleed A. Yousef, Ph.D.
 
-# Version: 1.0
+# Version: 2.0
 
 # Date: Aug., 16, 2018
 
@@ -19,23 +19,26 @@
 # curl -u 'USR' https://api.github.com/user/repos -d '{"name":"REMREP","public":"false"}'
 
 ###############################################
-REMREP="TMP" #can be any new repo name; however, if this repo exists remotely it will be
-ACCOUNT="MY"
+REMREP="AnyRemoteRep" #can be any new repo name; however, if this repo exists remotely it will be
+ACCOUNT="ISOT"
 case $ACCOUNT in
     MY           )
         LOCREP="/home/wyousef/Downloads/AAMyDocumentsAA/Reps/DrWaleedAYousef/$REMREP" #The local path of the repo.
-        URL="https://api.github.com/user/repos";;
+        URL="https://api.github.com/user/repos"
+        OWNER="DrWaleedAYousef";;
 
     ISOT           )
         LOCREP="/home/wyousef/Downloads/AAMyDocumentsAA/Reps/UVIC/$REMREP" #The local path of the repo.
-        URL="https://api.github.com/orgs/isotlaboratory/repos";;
+        URL="https://api.github.com/orgs/isotlaboratory/repos"
+        OWNER="isotlaboratory";;
 
     HCILAB )
         LOCREP="/home/wyousef/Downloads/AAMyDocumentsAA/Reps/HCI-LAB/$REMREP" #The local path of the repo.
-        URL="https://api.github.com/orgs/hci-lab/repos";;
+        URL="https://api.github.com/orgs/hci-lab/repos"
+        OWNER="hci-lab";;
 esac
 
-# ################################# Creating remote repo
+# # ################################# Creating remote repo
 USR="DrWaleedAYousef"
 curl -X POST -u '"$USR"' "$URL" -d '{
 "name":"'"$REMREP"'",
@@ -46,9 +49,8 @@ curl -X POST -u '"$USR"' "$URL" -d '{
 "delete_branch_on_merge":"true"
 }'
 
-################################# Creating Empty local repo if directory does not exist, then push it
+# ################################# Creating Empty local repo if directory does not exist, then push it
 if ! [ -d "$LOCREP" ]; then mkdir "$LOCREP"; fi
-# touch .gitignore
 cp README.md "$LOCREP/"
 cp .gitignore "$LOCREP/"
 cp LICENSE "$LOCREP/"
@@ -60,7 +62,22 @@ then
     git commit -m 'Initializing'
 fi
 
-git remote add origin "https://github.com/$USR/$REMREP.git"
+git remote add origin "https://github.com/$OWNER/$REMREP.git"
 git push -f -u origin master
 
+# ################################# Setting protection rules (API works only for organizations!!)
+curl -X PUT -H "Accept: application/vnd.github.v3+json" -u '"$USR"' "https://api.github.com/repos/$OWNER/$REMREP/branches/master/protection" -d '{
+"required_pull_request_reviews":{"dismissal_restrictions":{},"dismiss_stale_reviews":false,"require_code_owner_reviews":false,"required_approving_review_count":1,"bypass_pull_request_allowances":{"users":["octocat"],"teams":["justice-league"]}},
+"required_status_checks":null,
+"restrictions":null,
+"required_linear_history":true,
+"enforce_admins":false,
+"allow_force_pushes":false,
+"allow_deletions":false,
+"block_creations":false,
+"required_conversation_resolution":false
+}'
 
+# "dismissal_restrictions":{"users":["octocat"],"teams":["justice-league"]},
+# "required_status_checks":{"strict":false,"contexts":["continuous-integration/travis-ci"]},
+# "restrictions":{"users":["octocat"],"teams":["justice-league"],"apps":["super-ci"]},
